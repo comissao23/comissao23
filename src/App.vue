@@ -16,6 +16,7 @@
 
     <v-main>
       <HelloWorld />
+      <carousel></carousel>
     </v-main>
   </v-app>
 </template>
