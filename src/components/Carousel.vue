@@ -1,16 +1,20 @@
 <template>
   <v-row>
     <v-col v-for="(slide, idx) in slides" :key="idx">
-      <v-card elevation="24" :width="$vuetify.breakpoint.mobile ? '350' : '425'" :height="$vuetify.breakpoint.mobile ? '600' : '500'" class="mx-auto">
+      <v-card elevation="24" :width="$vuetify.breakpoint.mobile ? '350' : '425'" :height="$vuetify.breakpoint.mobile ? '625' : '550'" class="mx-auto">
         <v-col class="fill-height" align="center" justify="center">
          <v-row justify="center" class="pa-4 mb-5 mt-5 text-h5" style="font-weight: bold">
-            {{ slide.name }}
+           <v-col cols="10">
+              <h3>{{ slide.name }}</h3>
+           </v-col>
          </v-row>
          <v-row justify="center" class="text-justify">
              <v-col cols="9">
                  {{slide.content}}
              </v-col>
          </v-row >
+         <img class="watermarked"  height="120px"
+            src="../assets/logo_comissao_bege.png">
         </v-col>
       </v-card>
     </v-col>
@@ -48,3 +52,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.watermarked {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-image: url(../assets/logo_comissao_bege.png);
+  opacity: 0.7;
+}
+</style>

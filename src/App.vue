@@ -1,22 +1,21 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="rgb(34 6 6 / 90%)" >
       <div class="d-flex align-center">
         <v-img
           width="60"
           class="shrink mr-2"
           transition="scale-transition"
           contain
-          src="./assets/simbolo_RGB-150x150.png"
+          src="./assets/logo_comissao_bege.png"
         />
 
-        <h2>Comissão 2023</h2>
+        <h2 class="bege-text">Comissão 2023</h2>
       </div>
     </v-app-bar>
 
     <v-main>
       <HelloWorld />
-      <carousel></carousel>
     </v-main>
   </v-app>
 </template>
@@ -36,3 +35,9 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+.bege-text{
+  color: #a28041;
+}
+</style>

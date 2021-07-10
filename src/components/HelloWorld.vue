@@ -1,23 +1,26 @@
 <template>
   <v-container>
     <v-row justify="center" class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/simbolo_RGB-150x150.png')"
-          class="my-3"
-          contain
-          height="200"
-        />
+      <v-col>
+        <v-row>
+          <v-img
+            :src="require('../assets/textura_bg.png')"
+            class="cover-bg"
+            height="364"
+          />
+          <v-img
+            :src="require('../assets/logo_comissao_bege.png')"
+            class="my-3"
+            contain
+            height="300"
+          />
+        </v-row>
       </v-col>
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Seja um parceiro da Comissão 2023!
+          Comissão de formatura turma 2023 - Unifei
         </h1>
-
-        <p class="subheading font-weight-regular">
-          Ajude a realizar sonhos e a formar pessoas melhores!
-        </p>
       </v-col>
 
       <v-col cols="12" class="mb-5">
@@ -30,7 +33,7 @@
         </h2>
 
         <v-row justify="center">
-          <v-col align="center" lg='3'>
+          <v-col align="center" lg="3">
             <v-text-field outlined v-model="codigoParceiro"></v-text-field>
           </v-col>
         </v-row>
@@ -55,25 +58,49 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-footer dark padless color="#a28041" class="nav-menu-bottom">
+      <v-col align="center" class="mt-2">
+        <v-row>
+          <v-col v-for="(icon, idx) in icons" :key="icon">
+            <v-row justify="center">
+              <v-btn class="white--text" icon>
+                <v-icon
+                  @click="redirectToSocialMedia(icon)"
+                  class="mb-2"
+                  size="24px"
+                >
+                  {{ icon }}
+                </v-icon>
+              </v-btn>
+              <h3>{{ socialMediaText[idx] }}</h3>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-footer>
   </v-container>
 </template>
 
 <script>
-
 import Carousel from "./Carousel.vue";
 
 export default {
   name: "HelloWorld",
 
   components: {
-    Carousel
+    Carousel,
   },
-
 
   data() {
     return {
       codigoParceiro: null,
       mostrarCodigo: true,
+      icons: ["mdi-facebook", "mdi-instagram", "mdi-email"],
+      socialMediaText: [
+        "/comissao23unifei",
+        "@comissao23unifei",
+        "comissao2023unifei@gmail.com",
+      ],
       selectedParceiro: null,
       parceiros: [
         {
@@ -102,6 +129,29 @@ export default {
       this.mostrarCodigo = true;
       this.selectedParceiro = null;
     },
+    redirectToSocialMedia(icon) {
+      if (icon == "mdi-facebook") {
+        window.open("https://www.facebook.com/comissao23unifei");
+      } else if (icon == "mdi-instagram") {
+        window.open("https://www.instagram.com/comissao23unifei/");
+      }
+    },
   },
 };
 </script>
+
+<style scoped>
+.cover-bg {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: -64px;
+  bottom: -128px;
+}
+
+.nav-menu-bottom {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+</style>
