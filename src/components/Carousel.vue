@@ -1,10 +1,10 @@
 <template>
   <v-row>
     <v-col v-for="(slide, idx) in slides" :key="idx">
-      <v-card elevation="24" :width="$vuetify.breakpoint.mobile ? '350' : '425'" :height="$vuetify.breakpoint.mobile ? '625' : '550'" class="mx-auto">
+      <v-card elevation="24" :width="$vuetify.breakpoint.mobile ? '350' : '425'" :height="$vuetify.breakpoint.mobile ? '625' : '500'" class="mx-auto">
         <v-col class="fill-height" align="center" justify="center">
-         <v-row justify="center" class="pa-4 mb-5 mt-5 text-h5" style="font-weight: bold">
-           <v-col cols="10">
+         <v-row justify="center" class="mb-5 mt-1 text-h5" style="font-weight: bold">
+           <v-col style="z-index: 1" cols="10">
               <h3>{{ slide.name }}</h3>
            </v-col>
          </v-row>
@@ -36,7 +36,7 @@ export default {
       cycle: false,
       slides: [
         {
-          name: "No que estamos constantemente envolvidos?",
+          name: "No que estamos envolvidos?",
           content: '- Social - campanha do agasalho (colocar fotos da campanha) - Arrecadação de dinheiro (rifa, sorteios…) (colocar o engajamento no sorteio) - Pesquisa de mercado (com relação a formatura, fotos, empresas), - Fechamento da empresa de arrecadação para iniciar as adesões - Início da estruturação da adesão solidária, - Engajamento nas redes sociais (para atrair público, bbb da 23, templates, contato com ex alunos…) (colocar os insights dos vídeos da escolha do nome e outros insights bons)'
         },
         {

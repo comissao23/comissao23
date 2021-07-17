@@ -23,11 +23,11 @@
         </h1>
       </v-col>
 
-      <v-col cols="12" class="mb-5">
+      <v-col v-if="!selectedParceiro" cols="12" class="mb-5">
         <Carousel />
       </v-col>
 
-      <v-col class="mb-5 mt-5" cols="12" v-if="mostrarCodigo">
+      <v-col class="mt-5" style="margin-bottom: 80px"  cols="12" v-if="mostrarCodigo">
         <h2 class="headline font-weight-bold mb-3">
           Digite o seu código aqui!
         </h2>
@@ -59,20 +59,20 @@
       </v-col>
     </v-row>
     <v-footer dark padless color="#a28041" class="nav-menu-bottom">
-      <v-col align="center" class="mt-2">
+      <v-col>
         <v-row>
           <v-col v-for="(icon, idx) in icons" :key="icon">
             <v-row justify="center">
               <v-btn class="white--text" icon>
                 <v-icon
                   @click="redirectToSocialMedia(icon)"
-                  class="mb-2"
+                  class="mb-2 mt-2"
                   size="24px"
                 >
                   {{ icon }}
                 </v-icon>
               </v-btn>
-              <h3>{{ socialMediaText[idx] }}</h3>
+              <h3 v-if="!$vuetify.breakpoint.mobile" class="mt-1">{{ socialMediaText[idx] }}</h3>
             </v-row>
           </v-col>
         </v-row>
@@ -83,6 +83,7 @@
 
 <script>
 import Carousel from "./Carousel.vue";
+import { db } from "../main";
 
 export default {
   name: "HelloWorld",
@@ -102,28 +103,25 @@ export default {
         "comissao2023unifei@gmail.com",
       ],
       selectedParceiro: null,
-      parceiros: [
-        {
-          id: 12556,
-          nome: "Rei Burgão",
-          proposta: "Ajude com 1000 Reais e ganhe um banner na festa!",
-        },
-        {
-          id: 12456,
-          nome: "Speaking",
-          proposta:
-            "Ajude com 4500 Reais e ganhe um banner na festa, além de copos com a logo Speaking!",
-        },
-      ],
+      parceiros: [],
     };
+  },
+  mounted() {
+    var parceirosGet = db.collection("propostas").doc("proposta");
+
+    parceirosGet
+      .get()
+      .then((data) => {
+        this.parceiros = data.data();
+      })
+      
   },
   methods: {
     checkParceiro() {
-      this.selectedParceiro = this.parceiros.find(
+      this.selectedParceiro = this.parceiros.propostas.find(
         (parceiro) => parceiro.id == this.codigoParceiro
       );
       this.mostrarCodigo = false;
-      console.log(this.selectedParceiro);
     },
     voltar() {
       this.mostrarCodigo = true;
@@ -153,5 +151,7 @@ export default {
   position: absolute;
   right: 0;
   left: 0;
+  bottom: 0;
+  
 }
 </style>
